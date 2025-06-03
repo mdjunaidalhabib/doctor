@@ -16,10 +16,10 @@ export default function ScrollBackground({ children }) {
     backgroundColor,
     [0, 0.33, 0.66, 1],
     [
-      "linear-gradient(to right, #C9C1C1, #C9C1C1)",
-      "linear-gradient(to right, #C9C1C1, #C9C1C1)",
-      "linear-gradient(to right, #C9C1C1, #C9C1C1)",
-      "linear-gradient(to right, #C9C1C1, #C9C1C1)",
+      "linear-gradient(to right, #abebc6 , #abebc6 )",
+      "linear-gradient(to right, #abebc6  , #abebc6  )",
+      "linear-gradient(to right, #abebc6  , #abebc6  )",
+      "linear-gradient(to right, #abebc6 , #abebc6 )",
     ]
   );
 

@@ -5,17 +5,17 @@ const Features = () => {
     <section className="relative z-10  px-6 md:px-10 md:-mt-30 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Feature 1 */}
-          <div className="bg-pink-200 rounded-2xl shadow-md p-6 sm:p-8 hover:shadow-lg transition duration-300 text-center lg:text-left">
+          <div className="bg-emerald-200 dark:bg-slate-900 shadow-lg  rounded-2xl shadow-md p-6 sm:p-8 hover:shadow-lg transition duration-300 text-center lg:text-left">
             <div className="text-blue-600 text-4xl mb-4">
               <i className="icofont icofont-surgeon-alt"></i>
             </div>
             <span className="text-sm uppercase tracking-wide text-blue-600 font-semibold">
               24 Hours Service
             </span>
-            <h4 className="text-2xl font-bold mt-2 mb-4 text-gray-800">
+            <h4 className="text-2xl font-bold mt-2 mb-4 text-black dark:text-white">
               Online Appointment
             </h4>
-            <p className="text-gray-600 mb-6">
+            <p className="text-black dark:text-white mb-6">
               We've implemented the principle of family medicine, ensuring
               continuous care and support for you and your loved ones.
             </p>
@@ -28,17 +28,17 @@ const Features = () => {
           </div>
 
           {/* Feature 2 */}
-          <div className="bg-pink-200 rounded-2xl shadow-md p-6 sm:p-8 hover:shadow-lg transition duration-300 text-center lg:text-left">
+          <div className="bg-emerald-200 dark:bg-slate-900 shadow-lg rounded-2xl shadow-md p-6 sm:p-8 hover:shadow-lg transition duration-300 text-center lg:text-left">
             <div className="text-blue-600 text-4xl mb-4">
               <i className="icofont icofont-ui-clock"></i>
             </div>
             <span className="text-sm uppercase tracking-wide text-blue-600 font-semibold">
               Timing Schedule
             </span>
-            <h4 className="text-2xl font-bold mt-2 mb-4 text-gray-800">
+            <h4 className="text-2xl font-bold mt-2 mb-4 text-black dark:text-white">
               Working Hours
             </h4>
-            <ul className="text-gray-700 space-y-2 text-sm sm:text-base">
+            <ul className="text-black dark:text-white space-y-2 text-sm sm:text-base">
               <li className="flex justify-between border-b pb-1">
                 <span>Sun - Wed:</span> <span>7:00 - 18:00</span>
               </li>
@@ -52,17 +52,17 @@ const Features = () => {
           </div>
 
           {/* Feature 3 */}
-          <div className="bg-pink-200 rounded-2xl shadow-md p-6 sm:p-8 hover:shadow-lg transition duration-300 text-center lg:text-left">
+          <div className="bg-emerald-200 dark:bg-slate-900 shadow-lg rounded-2xl shadow-md p-6 sm:p-8 hover:shadow-lg transition duration-300 text-center lg:text-left">
             <div className="text-blue-600 text-4xl mb-4">
               <i className="icofont icofont-support"></i>
             </div>
             <span className="text-sm uppercase tracking-wide text-blue-600 font-semibold">
               Emergency Cases
             </span>
-            <h4 className="text-2xl font-bold mt-2 mb-4 text-gray-800">
+            <h4 className="text-2xl font-bold mt-2 mb-4 text-black dark:text-white">
               2-990-770-5550
             </h4>
-            <p className="text-gray-600">
+            <p className="text-black dark:text-white">
               Experience all-time support for emergencies. We embrace the
               principle of family medicine, ensuring continuous care. Connect
               with us for any urgent need.
