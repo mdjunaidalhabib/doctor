@@ -39,14 +39,14 @@ const EmailSection = () => {
 
   return (
     <div id="contact" className="py-20">
-      <h2 className=" text-center text-4xl font-bold text-white">Contact me</h2>
+      <h2 className=" text-center text-4xl font-bold text-black dark:text-white">Contact me</h2>
       <section className="grid md:grid-cols-2 px-6 md:px-10 py-2 max-w-7xl mx-auto relative">
         <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-900 to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-3/4 -left-4 transform -translate-x-1/2 -translate-1/2"></div>
         <div className="z-10">
-          <h5 className="text-xl font-bold text-white my-2">
+          <h5 className="text-xl font-bold text-black dark:text-white my-2">
             Let&apos;s Connect
           </h5>
-          <p className="text-[#ADB7BE] mb-4 max-w-md">
+          <p className="text-black dark:text-white mb-4 max-w-md">
             {" "}
             I&apos;m currently looking for new opportunities, my inbox is always
             open. Whether you have a question or just want to say hi, I&apos;ll
@@ -69,7 +69,7 @@ const EmailSection = () => {
               <div className="mb-6">
                 <label
                   htmlFor="email"
-                  className="text-white block mb-2 text-sm font-medium"
+                  className="text-black dark:text-white block mb-2 text-sm font-medium"
                 >
                   Your email
                 </label>
@@ -85,7 +85,7 @@ const EmailSection = () => {
               <div className="mb-6">
                 <label
                   htmlFor="subject"
-                  className="text-white block text-sm mb-2 font-medium"
+                  className="text-black dark:text-white block text-sm mb-2 font-medium"
                 >
                   Subject
                 </label>
@@ -101,7 +101,7 @@ const EmailSection = () => {
               <div className="mb-6">
                 <label
                   htmlFor="message"
-                  className="text-white block text-sm mb-2 font-medium"
+                  className="text-black dark:text-white block text-sm mb-2 font-medium"
                 >
                   Message
                 </label>
@@ -114,7 +114,7 @@ const EmailSection = () => {
               </div>
               <button
                 type="submit"
-                className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2.5 px-5 rounded-lg w-full"
+                className="bg-primary-500 hover:bg-primary-600 text-black dark:text-white font-medium py-2.5 px-5 rounded-lg w-full"
               >
                 Send Message
               </button>
