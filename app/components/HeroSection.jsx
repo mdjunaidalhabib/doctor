@@ -10,10 +10,10 @@ const HeroBanner = () => {
             <h3 className="uppercase mt-3 text-sm tracking-widest text-blue-600 font-semibold">
               Professional Care For Your Health
             </h3>
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-800 my-2 leading-snug md:leading-tight">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-blue-600 my-2 leading-snug md:leading-tight">
               Good Health Moves Us Forward
             </h1>
-            <p className="text-gray-800 text-base md:text-lg mb-8 text-justify">
+            <p className="text-blue-600 text-base md:text-lg mb-8 text-justify">
               Humanity stands as a cornerstone of professionalism for any
               doctor. Here at our clinic, we prioritize your holistic
               well-being, nurturing both your mental and physical health with
