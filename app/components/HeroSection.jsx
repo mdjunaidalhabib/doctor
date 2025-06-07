@@ -20,7 +20,7 @@ const HeroBanner = () => {
               meticulous care.
             </p>
             <a
-              href="appoinment.html"
+              href="../appointment"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition duration-300"
