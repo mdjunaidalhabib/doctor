@@ -1,14 +1,12 @@
 "use client";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
-import dayjs from "dayjs";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function AppointmentPage() {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
     reset,
   } = useForm();
@@ -16,16 +14,33 @@ export default function AppointmentPage() {
   const [loading, setLoading] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
+  const [availableSlots, setAvailableSlots] = useState([]);
 
-  const availableDates = Array.from({ length: 5 }, (_, i) =>
-    dayjs().add(i, "day").format("YYYY-MM-DD")
-  );
+  useEffect(() => {
+    const fetchSlots = async () => {
+      try {
+        const res = await fetch("/api/doctor-timeslots");
+        if (!res.ok) throw new Error("টাইমস্লট লোড করতে সমস্যা হয়েছে");
+        const data = await res.json();
+        setAvailableSlots(data);
+      } catch (error) {
+        alert(error.message);
+      }
+    };
+    fetchSlots();
+  }, []);
 
-  const timeSlots = ["10:00 AM", "03:00 PM", "07:00 PM"];
+  // ডেটগুলো আলাদা করে বের করা (কোন কোন তারিখে টাইমস্লট আছে)
+  const availableDates = [...new Set(availableSlots.map((slot) => slot.date))];
+
+  // সিলেক্টেড তারিখ অনুযায়ী সময়ের লিস্ট তৈরি করা
+  const availableTimes = availableSlots
+    .filter((slot) => slot.date === selectedDate && !slot.isBooked)
+    .map((slot) => slot.time);
 
   const onSubmit = async (data) => {
     if (!selectedDate || !selectedTime) {
-      alert("তারিখ ও সময় সিলেক্ট করুন");
+      alert("তারিখ ও সময় নির্বাচন করুন");
       return;
     }
 
@@ -42,15 +57,19 @@ export default function AppointmentPage() {
 
       const result = await res.json();
       if (res.ok) {
-        alert("✅ বুকিং সফল হয়েছে");
+        alert("✅ বুকিং সফল হয়েছে");
         reset();
         setSelectedDate(null);
         setSelectedTime(null);
+        // বুকিং এর পর টাইমস্লট আবার লোড করে UI আপডেট কর
+        const freshRes = await fetch("/api/doctor-timeslots");
+        const freshData = await freshRes.json();
+        setAvailableSlots(freshData);
       } else {
         alert("❌ " + result.error);
       }
     } catch (error) {
-      alert("❌ একটি সমস্যা হয়েছে");
+      alert("❌ একটি সমস্যা হয়েছে");
     } finally {
       setLoading(false);
     }
@@ -74,9 +93,9 @@ export default function AppointmentPage() {
           নাম <span className="text-red-500">*</span>
         </label>
         <input
-          {...register("name", { required: "নাম দেওয়া আবশ্যক" })}
+          {...register("name", { required: "নাম দেওয়া আবশ্যক" })}
           placeholder="আপনার নাম লিখুন"
-          className="w-full p-3 pl-4 border border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+          className="w-full p-3 pl-4 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
         />
         {errors.name && (
           <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
@@ -98,7 +117,7 @@ export default function AppointmentPage() {
           })}
           type="tel"
           placeholder="01XXXXXXXXX"
-          className="w-full p-3 pl-4 border border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+          className="w-full p-3 pl-4 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
         />
         {errors.phone && (
           <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
@@ -111,13 +130,19 @@ export default function AppointmentPage() {
           তারিখ নির্বাচন করুন:
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          {availableDates.length === 0 && (
+            <p className="text-red-500">কোনো উপলব্ধ তারিখ নেই</p>
+          )}
           {availableDates.map((date) => (
             <motion.button
               key={date}
               type="button"
               whileTap={{ scale: 0.95 }}
-              onClick={() => setSelectedDate(date)}
-              className={`py-2 px-3 rounded-xl border text-sm font-medium transition-all duration-200
+              onClick={() => {
+                setSelectedDate(date);
+                setSelectedTime(null);
+              }}
+              className={`py-2 px-3 rounded-xl border text-sm font-medium
                 ${
                   selectedDate === date
                     ? "bg-blue-600 text-white shadow-lg"
@@ -136,7 +161,10 @@ export default function AppointmentPage() {
           সময় নির্বাচন করুন:
         </p>
         <div className="flex gap-3 flex-wrap">
-          {timeSlots.map((slot) => (
+          {selectedDate && availableTimes.length === 0 && (
+            <p className="text-red-500">এই তারিখে কোন সময় উপলব্ধ নেই</p>
+          )}
+          {availableTimes.map((slot) => (
             <motion.button
               key={slot}
               type="button"
@@ -169,4 +197,3 @@ export default function AppointmentPage() {
     </motion.form>
   );
 }
-// className = "px-0 lg:px-3 inline-block py-1 w-full shadow-xl lg:m-3 sm:w-fit rounded-full bg-violet-700 hover:bg-fuchsia-600 text-white mt-3 text-center";
